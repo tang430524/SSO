@@ -8,8 +8,6 @@ import java.net.URLConnection;
 import java.util.List;
 import java.util.Map;
 
-import com.ty.test1.vo.User;
-
 public class HttpRequest {
 	private static final String servletPath = "http://127.0.0.1:9010/index.html";
 	private static final String token = "e554f97b77703951a8319180d0fa39";

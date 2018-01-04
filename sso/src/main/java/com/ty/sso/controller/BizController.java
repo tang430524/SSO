@@ -24,6 +24,12 @@ import com.ty.sso.vo.User;
 
 @Controller
 public class BizController {
+	@Value("${admin.uname}")
+	String aduname;
+	@Value("${admin.upassword}")
+	String adupassword;
+	@Value("${admin.uid}")
+	Integer aduid;
 	@Autowired
 	RedisUtil ru;
 	@Autowired
@@ -65,11 +71,11 @@ public class BizController {
     public @ResponseBody void logincheck(@ModelAttribute User user,@RequestParam String reurl,HttpServletResponse response) throws Exception {
     	String uname=user.getUname();String upassword=user.getUpassword();
     	System.out.println(uname+"..."+upassword);
-    	if(uname.equals("tang")&&upassword.equals("123")){
-    		String token=tk.getToken("1001");
-    		user.setUpassword("");user.setUid(1001);
+    	if(uname.equals(aduname)&&upassword.equals(adupassword)){
+    		String token=tk.getToken(aduid.toString());
+    		user.setUpassword("");user.setUid(aduid);
     		TokenModel tm=new TokenModel(token, user);
-    		ru.set("1001", tm, new Long(10000));
+    		ru.set(aduid.toString(), tm, new Long(10000));
     		try {
 				response.sendRedirect(reurl+"?token="+token);
 				return;
