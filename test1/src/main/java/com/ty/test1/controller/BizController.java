@@ -15,6 +15,4 @@ public class BizController {
     public String home(HttpSession session) {
         return "hello," +session.getAttribute("uname");
     }
-    
-    
 }
