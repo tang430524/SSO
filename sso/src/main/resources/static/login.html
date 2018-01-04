@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>sso</title>
+</head>
+<body>
+<form action="logincheck" method="post">
+	<input type="text"  name="uname" value="" />
+	<input type="password" name="upassword" value="" />
+	<input type="hidden" name="reurl" value=""  id="reurl"/>
+	<input type="submit" />
+</form>
+<script type="text/javascript">
+	function GetQueryString(name)
+{
+     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+     var r = window.location.search.substr(1).match(reg);
+     if(r!=null)return  unescape(r[2]); return null;
+}
+// 调用方法
+var url=GetQueryString("reurl");
+document.getElementById('reurl').value=(url==null?"":url);
+
+</script>
+</body>
+</html>
